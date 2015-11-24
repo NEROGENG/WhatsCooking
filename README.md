@@ -2,8 +2,12 @@
 
 How to use parser
 
-./parser.py inputjsonfile outputcsvfile <# of frequent ingredients>
+./parser.py inputjson outputcsv <# of frequent ingredients>
 
-Sample usage: ./parser.py train.json train.csv 10
+Sample usage: ./parser.py train.json data.csv 10
 
-Note: Does not work with test.json yet because cuisine field is missing!
+How to use splitter
+
+./splitter.py inputcsv outputtrainingcsv outputtestcsv <%training data>
+
+Sample usage: ./splitter.py data.csv train.csv test.csv 0.8
