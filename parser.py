@@ -40,10 +40,12 @@ def main(argv):
 	# write header
 	writer.writerow(['id', 'cuisine'] + frequentIngredients)
 	# write entries
+
 	for i in range(0, len(data)):
 		row = list()
 		row.append(data[i]["id"])
-		row.append(data[i]["cuisine"].encode('utf-8'))
+		cuisine = data[i].get('cuisine', '')
+		row.append(cuisine.encode('utf-8'))
 
 		items =  [x.encode('utf-8') for x in data[i]["ingredients"]]
 
@@ -54,6 +56,7 @@ def main(argv):
 				row.append(0)
 		writer.writerow(row)
 	fout.close()
-	
+
+
 if __name__ == "__main__":
    main(sys.argv[1:])
