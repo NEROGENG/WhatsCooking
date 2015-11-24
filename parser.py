@@ -11,9 +11,9 @@ def main(argv):
 	# number of interested frequent ingredients
 	frequent = int(sys.argv[3])
 
-	f = open(inputfile)
-	data = json.load(f) 
-	f.close()
+	fin = open(inputfile)
+	data = json.load(fin) 
+	fin.close()
 
 	# create a list of all ingredients, dups allowed
 	ingredients = list()
@@ -35,7 +35,8 @@ def main(argv):
 
 	# pprint(frequentIngredients)
 
-	writer = csv.writer(open(outputfile, "wb+"))
+	fout = open(outputfile, "wb+")
+	writer = csv.writer(fout)
 	# write header
 	writer.writerow(['id', 'cuisine'] + frequentIngredients)
 	# write entries
@@ -52,6 +53,7 @@ def main(argv):
 			else:
 				row.append(0)
 		writer.writerow(row)
-
+	fout.close()
+	
 if __name__ == "__main__":
    main(sys.argv[1:])
