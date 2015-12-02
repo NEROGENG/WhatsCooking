@@ -48,12 +48,23 @@ def main(argv):
 		row.append(cuisine.encode('utf-8'))
 
 		items =  [x.encode('utf-8') for x in data[i]["ingredients"]]
+		sub = False
 
 		for j in range(0, len(frequentIngredients)):
 			if frequentIngredients[j] in items:
 				row.append(1)
 			else:
-				row.append(0)
+				for it in items:
+					if frequentIngredients[j] in it:
+					# check if the frequentIngredient is a substring in items!
+						row.append(1)
+						sub = True
+						break
+				if sub == False:
+					row.append(0)
+				else:
+					sub = False
+
 		writer.writerow(row)
 	fout.close()
 
